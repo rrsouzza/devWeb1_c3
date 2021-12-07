@@ -28,6 +28,7 @@ function sorteioCores(): void {
 
 function continuacao(): void {
     var corEscolhida: string = coresSorteadas[Math.floor(Math.random() * 10)];
+    console.log("Cor sorteada: " +corEscolhida);
     var acertou: boolean = false;
 
     do {
@@ -46,20 +47,28 @@ function continuacao(): void {
                 document.body.style.backgroundColor = corEscolhida;
                 acertou = true;
             } else {
-                let letraInput = inputUsuario.toLowerCase().charCodeAt(0);
-                let letraCorSorteada = corEscolhida.toLowerCase().charCodeAt(0);
-                if (letraInput > letraCorSorteada) {
-                    alert("A cor que você escolheu começa com a letra " + letraInput + ".\n\nA sua cor é alfabeticamente anterior à minha. Tente novamente.");
-                } else if (letraInput < letraCorSorteada) {
-                    alert("A cor que você escolheu começa com a letra " + letraInput + ".\n\nA sua cor é alfabeticamente posterior à minha. Tente novamente.");
-                } else if (letraInput == letraCorSorteada) {
-                    alert("A cor que você escolheu começa com a letra " + letraInput + ".\n\nA sua cor começa com a mesma letra que a minha. Tente novamente.");
+                let letraInputCharCode: number = inputUsuario.toLowerCase().charCodeAt(0);
+                console.log("CharCode da letraInput: " +letraInputCharCode);
+                let letraInputTexto: string = String.fromCodePoint(letraInputCharCode);
+                console.log("Texto da letraInput: " +letraInputTexto);
+                
+                let letraCorSorteadaCharCode: number = corEscolhida.toLowerCase().charCodeAt(0);
+                console.log("CharCode da letraSorteada: " +letraCorSorteadaCharCode);
+                let letraCorSorteadaTexto: string = String.fromCodePoint(letraCorSorteadaCharCode);
+                console.log("Texto da letraSorteada: " +letraCorSorteadaTexto);
+                
+                if (letraInputCharCode > letraCorSorteadaCharCode) {
+                    alert("A cor que você escolheu começa com a letra " + letraInputTexto + ".\n\nA sua cor é alfabeticamente posterior à minha. Tente novamente.");
+                } else if (letraInputCharCode < letraCorSorteadaCharCode) {
+                    alert("A cor que você escolheu começa com a letra " + letraInputTexto + ".\n\nA sua cor é alfabeticamente anterior à minha. Tente novamente.");
+                } else if (letraInputCharCode == letraCorSorteadaCharCode) {
+                    alert("A cor que você escolheu começa com a letra " + letraInputTexto + ".\n\nA sua cor começa com a mesma letra que a minha. Tente novamente.");
                 } else {
                     alert("Ocorreu algum erro.");
                 }
             }
         }else{
-            alert("Insira um valor!");
+            acertou = true;
         }
     } while (acertou == false);
 }
