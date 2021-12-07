@@ -24,7 +24,7 @@ function sorteioCores() {
 }
 function continuacao() {
     var corEscolhida = coresSorteadas[Math.floor(Math.random() * 10)];
-    console.log("Cor sorteada: " + corEscolhida);
+    //console.log("Cor sorteada: " +corEscolhida);
     var acertou = false;
     do {
         var mensagem = "Eu estou pensando em uma dessas cores: \n";
